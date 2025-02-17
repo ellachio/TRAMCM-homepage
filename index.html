@@ -1,0 +1,220 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="hero">
+        <div class="navbar">
+            <img src="logo.png" class="logo">
+            <div class="user">
+                <button type="button">Dashboard</button>
+                <img src="user.png">
+            </div> 
+        </div>
+
+        <div class="container">
+            <div class="info">
+                <h1>Community Portal</h1>
+                <p>
+                    Your gateway to a seamless community experience—stay connected, informed, <br>
+                    and engaged with everything happening in The Rise at Monterrazas.
+                </p>
+                <input type="text" id="search" placeholder="Search">
+                <div id="suggestions" class="hidden"></div>
+                <button id="getStarted" class="hidden">Get Started</button>
+            </div>
+        </div>
+            
+        </div>
+
+        <div class="slider">
+            <img src="left-arrow.png" id="prev">
+            <div class="preview">
+                <img src="small1.jpg" class="active thumbnail">
+                <img src="small2.jpg" class="thumbnail">
+                <img src="small3.jpg" class="thumbnail">
+                <img src="small4.jpg" class="thumbnail">
+                <img src="small5.jpg" class="thumbnail">
+            </div>
+            <img src="right-arrow.png" id="next">
+        </div>
+
+    </div>
+
+
+    <script>
+
+var prev = document.getElementById("prev");
+var next = document.getElementById("next");
+var thumbnail = document.getElementsByClassName("thumbnail");
+var hero = document.getElementById("hero");
+var title = document.querySelector(".info h1");
+var description = document.querySelector(".info p");
+var searchInput = document.getElementById("search");
+var getStartedBtn = document.getElementById("getStarted");
+var suggestionsDiv = document.getElementById("suggestions");
+
+var content = [
+    {
+        image: "bbg1.jpg",
+        title: "Community Portal",
+        text: "Your gateway to a seamless community experience—stay connected, informed, and engaged with everything happening in The Rise at Monterrazas."
+    },
+    {
+        image: "bbg2.jpg",
+        title: "Advisory",
+        text: "Stay up-to-date with the latest news, policy changes, and upcoming events in the community."
+    },
+    {
+        image: "bbg3.jpg",
+        title: "Online Payments",
+        text: "Easily pay your dues, reserve amenities, and track your financial transactions with our online system."
+    },
+    {
+        image: "bbg4.jpg",
+        title: "Request Services",
+        text: "Need repairs or maintenance? Submit a request and track its progress in real-time."
+    },
+    {
+        image: "bbg5.jpg",
+        title: "Community Engagement",
+        text: "Join discussions, share ideas, and connect with your neighbors to build a vibrant community."
+    }
+];
+
+let i = 0;
+
+next.onclick = function () {
+    if (i < content.length - 1) {
+        i++;
+        updateContent();
+    }
+};
+
+prev.onclick = function () {
+    if (i > 0) {
+        i--;
+        updateContent();
+    }
+};
+for (let j = 0; j < thumbnail.length; j++) {
+    thumbnail[j].onclick = function () {
+        i = j;
+        updateContent();
+    };
+}
+function updateContent() {
+    hero.style.backgroundImage = `url(${content[i].image})`;
+    title.textContent = content[i].title;
+    description.textContent = content[i].text;
+
+    if (i === 0) { 
+        searchInput.classList.remove("hidden");
+        getStartedBtn.classList.add("hidden");
+    } else {
+        searchInput.classList.add("hidden");
+        getStartedBtn.classList.remove("hidden");
+    }
+
+    for (let j = 0; j < thumbnail.length; j++) {
+        thumbnail[j].classList.remove("active");
+    }
+    thumbnail[i].classList.add("active");
+}
+
+var keywords = [
+    { name: "Account", link: "community-portal.html" },
+    { name: "Advisory", link: "advisory.html" },
+    { name: "Online Payments", link: "online-payments.html" },
+    { name: "Request Services", link: "request-services.html" },
+    { name: "Announcements", link: "community-engagement.html" },
+    { name: "Upcoming Events", link: "community-engagement.html" },
+    { name: "Community Engagement", link: "community-engagement.html" },
+    { name: "Community News", link: "community-engagement.html" },
+    { name: "Neighborhood Updates", link: "community-engagement.html" },
+    { name: "Local Gatherings", link: "community-engagement.html" },
+    { name: "Meetings schedule", link: "community-engagement.html" },
+    { name: "Community events calendar", link: "community-engagement.html" },
+    { name: "Community guidelines", link: "community-engagement.html" },
+    { name: "Subdivision rules", link: "community-engagement.html" },
+    { name: "Emergency contacts", link: "community-engagement.html" },
+    { name: "Maintenance request", link: "community-engagement.html" },
+    { name: "Report a broken gate", link: "community-engagement.html" },
+    { name: "Request for security assistance", link: "community-engagement.html" },
+    { name: "Water leakage repair", link: "community-engagement.html" },
+    { name: "Electrical issues request", link: "community-engagement.html" },
+    { name: "Garbage collection schedule", link: "community-engagement.html" },
+    { name: "Parking problems", link: "community-engagement.html" },
+    { name: "Pay dues", link: "community-engagement.html" },
+    { name: "Maintenance fees payment", link: "community-engagement.html" },
+    { name: "Bill payment", link: "community-engagement.html" },
+    { name: "View account balance", link: "community-engagement.html" },
+    { name: "Payment history", link: "community-engagement.html" },
+    { name: "Payment confirmation", link: "community-engagement.html" },
+    { name: "How to pay dues online", link: "community-engagement.html" },
+    { name: "Past due payments", link: "community-engagement.html" },
+    { name: "Payment receipt download", link: "community-engagement.html" },
+    { name: "Reserve clubhouse", link: "community-engagement.html" },
+    { name: "Book swimming pool", link: "community-engagement.html" },
+    { name: "Function hall reservation", link: "community-engagement.html" },
+    { name: "Book sports court", link: "community-engagement.html" },
+    { name: "Amenities availability", link: "community-engagement.html" },
+    { name: "Facility booking", link: "community-engagement.html" },
+    { name: "Available amenities", link: "community-engagement.html" },
+    { name: "Reserve venue for event", link: "community-engagement.html" },
+    { name: "Swimming pool schedule", link: "community-engagement.html" },
+    { name: "Tennis court booking", link: "community-engagement.html" },
+    { name: "Change profile picture", link: "community-engagement.html" },
+    { name: "Update contact information", link: "community-engagement.html" },
+    { name: "Forgot password", link: "community-engagement.html" },
+    { name: "Edit account settings", link: "community-engagement.html" },
+    { name: "View property details", link: "community-engagement.html" },
+    { name: "Update my address", link: "community-engagement.html" },
+    { name: "View lot number", link: "community-engagement.html" },
+    { name: "Request support", link: "community-engagement.html" },
+    { name: "Customer service", link: "community-engagement.html" },
+    { name: "File a complaint", link: "community-engagement.html" },
+    { name: "Submit feedback", link: "community-engagement.html" },
+    { name: "Talk to the admin", link: "community-engagement.html" },
+    { name: "Report an issue", link: "community-engagement.html" },
+    { name: "Contact community manager", link: "community-engagement.html" },
+    { name: "Neighborhood security status", link: "community-engagement.html" },
+    { name: "Community facilities overview", link: "community-engagement.html" },
+    { name: "Rules on pets in the community", link: "community-engagement.html" },
+    { name: "Visitor parking", link: "community-engagement.html" },
+    { name: "Property taxes", link: "community-engagement.html" },
+    { name: "Join community event", link: "community-engagement.html" },
+    { name: "Upcoming subdivision parties", link: "community-engagement.html" },
+];
+
+searchInput.addEventListener("input", function () {
+    var query = searchInput.value.toLowerCase();
+    suggestionsDiv.innerHTML = ''; 
+
+    if (query) {
+        var filteredKeywords = keywords.filter(function (keyword) {
+            return keyword.name.toLowerCase().includes(query);
+        });
+
+        filteredKeywords.forEach(function (keyword) {
+            var suggestionItem = document.createElement("div");
+            suggestionItem.classList.add("suggestion-item");
+            suggestionItem.textContent = keyword.name;
+            suggestionItem.onclick = function () {
+                window.location.href = keyword.link; 
+            };
+            suggestionsDiv.appendChild(suggestionItem);
+        });
+        suggestionsDiv.classList.remove("hidden");
+    } else {
+        suggestionsDiv.classList.add("hidden");
+    }
+});
+
+    </script>
+
+</body>
+</html>
