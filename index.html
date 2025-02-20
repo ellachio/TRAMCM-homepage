@@ -7,10 +7,11 @@
 <body>
 
     <div id="hero">
+        <div class="fade-bg"></div>
         <div class="navbar">
             <img src="logo.png" class="logo">
             <div class="user">
-                <button type="button">Dashboard</button>
+                <button type="button" class="dash">Dashboard</button>
                 <img src="user.png">
             </div> 
         </div>
@@ -106,12 +107,28 @@ for (let j = 0; j < thumbnail.length; j++) {
         updateContent();
     };
 }
-function updateContent() {
-    hero.style.backgroundImage = `url(${content[i].image})`;
-    title.textContent = content[i].title;
-    description.textContent = content[i].text;
 
-    if (i === 0) { 
+var fadeBg = document.querySelector(".fade-bg");
+
+function updateContent() {
+    // Set the fade-bg to current image
+    fadeBg.style.backgroundImage = hero.style.backgroundImage;
+    fadeBg.style.opacity = "1";
+
+    // Set new background image with delay
+    setTimeout(() => {
+        hero.style.backgroundImage = `url(${content[i].image})`;
+        title.textContent = content[i].title;
+        description.textContent = content[i].text;
+        
+        // Reset fade-bg
+        setTimeout(() => {
+            fadeBg.style.opacity = "0";
+        }, 30);
+    }, 200);
+
+    // Your existing code for search/getStarted visibility
+    if (i === 0) {
         searchInput.classList.remove("hidden");
         getStartedBtn.classList.add("hidden");
     } else {
@@ -119,6 +136,7 @@ function updateContent() {
         getStartedBtn.classList.remove("hidden");
     }
 
+    // Your existing code for thumbnail active state
     for (let j = 0; j < thumbnail.length; j++) {
         thumbnail[j].classList.remove("active");
     }
